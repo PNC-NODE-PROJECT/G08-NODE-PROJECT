@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
         models_question.questions_models.find()
             .then((result) => {
                 res.send(result);
-                console.log(result);
+                // console.log(result[0].question);
             })
             .catch((err) => {
                 res.send(err)
@@ -22,8 +22,8 @@ router.post('/create', (req, res) => {
     console.log(req.body)
     models_question.questions_models.create(req.body)
         .then((result) => {
-            res.send(result);
-            console.log(result);
+            res.send(result.title);
+            // console.log(result);
         })
         .catch((err) => {
             res.send(err)
@@ -34,7 +34,7 @@ router.delete('/delete/:id', (req, res) => {
     models_question.questions_models.deleteOne({ _id: req.params.id })
         .then((result) => {
             res.send(result);
-            console.log(result);
+            // console.log(result);
         })
         .catch((err) => {
             res.send(err)
@@ -42,10 +42,13 @@ router.delete('/delete/:id', (req, res) => {
         })
 })
 router.put("/update/:id", (req, res) => {
-    let data = req.body
-    models_question.questions_models.updateOne({ _id: req.params.id }, data)
+    // let data = req.body
+    // console.log(data)
+    console.log({ question: req.body.question, answers: req.body.answers })
+    models_question.questions_models.updateMany({ _id: req.params.id }, { question: req.body.question, answers: req.body.answers })
         .then((result) => {
             res.send(result)
+                // console.log(result)
         })
         .catch((err) => {
             res.send(err);
