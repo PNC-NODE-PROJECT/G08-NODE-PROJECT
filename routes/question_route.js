@@ -37,7 +37,6 @@ router.delete('/delete/:id', (req, res) => {
         })
 })
 router.put("/update/:id", (req, res) => {
-    console.log({ question: req.body.question, answers: req.body.answers })
     models_question.questions_models.updateMany({ _id: req.params.id }, { question: req.body.question, answers: req.body.answers })
         .then((result) => {
             res.send(result)
