@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 // const PORT = 3000;
-// app.use(cors({ origin: '*' })); // To allow any origin
+app.use(cors({ origin: '*' })); // To allow any origin
 app.use(express.urlencoded())
 app.use(express.json());
 app.listen(PORT, () => {
