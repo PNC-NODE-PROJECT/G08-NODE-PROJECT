@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,500&display=swap');
+* {
+    font-family: sans-serif;
+}
+.answer {
+    border: 1px solid darkblue;
+    padding: 10px;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.no-border {
+    border: none;
+    outline: none;
+}
+.container {
+    background-color: rgb(70, 200, 243);
+    margin: auto;
+    margin-top: 140px;
+    border-radius: 10px;
+    padding: 10px;
+}
+#title{
+    border: none;
+    outline: none;
+    border-bottom: 3px solid rgb(187, 184, 184);
+    margin-bottom: 5px;
+    width: 100%;
+}
+.question-score{
+    display: flex;
+    border: 1px solid darkblue;
+    padding: 10px;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+    width: 100%;
+}
+span {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+#input-question {
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
+.input-question {
+    width: 100%;
+}
+
+.btns {
+    display: flex;
+    justify-content: flex-end;
+    
+}
+.margin-right {
+    margin-right:5px;
+}
+
+.sign-up {
+    padding: 40px;
+}
+
+input {
+    background: none;
+    border: none;
+    outline: none;
+}
