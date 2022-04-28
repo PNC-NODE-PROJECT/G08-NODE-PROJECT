@@ -1,6 +1,7 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
 // connect to mongodb server
-mongoose.connect("mongodb://localhost:27017/quiz_app_g08", { useUnifiedTopology: true });
+mongoose.connect(process.env.DATABASE_URL, { useUnifiedTopology: true });
 //check if connection is successfull
 const db = mongoose.connection;
 db.on("error", console.error.bind(console,
@@ -11,21 +12,17 @@ db.on("error", console.error.bind(console,
 // schema of questions 
 const questions_schema = new mongoose.Schema({
         question: {
-            type: String,
-            required: true
+            type: String
         },
-        answers: {
-            type: Array,
+        answers: [{ answer: { type: String, required: true }, correct_answer: { type: Boolean, required: true, default: false } },
+            { answer: { type: String, required: true }, correct_answer: { type: Boolean, required: true, default: false } },
+            { answer: { type: String, required: true }, correct_answer: { type: Boolean, required: true, default: false } },
+            { answer: { type: String, required: true }, correct_answer: { type: Boolean, required: true, default: false } }
+        ],
+        score: {
+            type: Number,
             required: true
         }
-        // correct_answer: {
-        //     type: String,
-        //     required: true
-        // },
-        // score: {
-        //     type: Number,
-        //     required: true
-        // }
     })
     //  create collection 
 const questions_models = mongoose.model('add_questions', questions_schema);

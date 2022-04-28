@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,500&display=swap');
 * {
     font-family: sans-serif;
@@ -69,3 +70,41 @@ input {
     border: none;
     outline: none;
 }
+=======
+@import url('https://fonts.googleapis.com/css2?family=Arvo&family=Roboto+Slab:wght@350&display=swap');
+* {
+    font-family: 'Roboto Slab', serif;
+}
+
+* body {
+    margin: auto;
+    padding: auto;
+}
+
+
+/* home page */
+
+header {
+    background-color: rgb(0, 187, 250);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 10px 0 black;
+    color: white;
+}
+
+nav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.logo {
+    margin: 0 auto;
+}
+>>>>>>> ec5bc7bb2eb90fc42b5566df0fc76966253eda37
