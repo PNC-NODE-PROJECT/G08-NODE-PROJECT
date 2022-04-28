@@ -23,13 +23,6 @@ const questions_schema = new mongoose.Schema({
             type: Number,
             required: true
         }
-        // title: { type: String },
-        // question: [{
-        //     question: { type: String },
-        //     answers: [{ anw: { type: String }, correct_answer: { type: Boolean, require: true, default: false } }],
-        //     score: { type: Number }
-        // }],
-        // score: { type: Number }
     })
     //  create collection 
 const questions_models = mongoose.model('add_questions', questions_schema);
