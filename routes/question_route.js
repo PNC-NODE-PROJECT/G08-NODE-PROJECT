@@ -1,4 +1,5 @@
 const express = require('express');
+const { redirect } = require('express/lib/response');
 let router = express.Router();
 const models_question = require('../models/question_models');
 
@@ -27,7 +28,8 @@ router.post('/create', (req, res) => {
         })
 })
 router.delete('/delete/:id', (req, res) => {
-    models_question.questions_models.deleteOne({ _id: req.params.id })
+    console.log({ _id: req.params.id })
+    models_question.questions_models.deleteMany({ _id: req.params.id })
         .then((result) => {
             res.send(result);
         })
@@ -37,7 +39,7 @@ router.delete('/delete/:id', (req, res) => {
         })
 })
 router.put("/update/:id", (req, res) => {
-    models_question.questions_models.updateMany({ _id: req.params.id }, { question: req.body.question, answers: req.body.answers })
+    models_question.questions_models.updateOne({ _id: req.params.id }, { question: req.body.question, answers: req.body.answers, score: req.body.score })
         .then((result) => {
             res.send(result)
         })

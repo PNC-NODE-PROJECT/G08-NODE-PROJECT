@@ -24,6 +24,14 @@ const questions_schema = new mongoose.Schema({
             required: true
         }
     })
+    // login schema
+const login_schema = new mongoose.Schema({
+        email: { type: String },
+        password: { type: String }
+
+    })
     //  create collection 
 const questions_models = mongoose.model('add_questions', questions_schema);
 module.exports.questions_models = questions_models;
+const login_models = mongoose.model('logins', login_schema);
+module.exports.login_models = login_models;

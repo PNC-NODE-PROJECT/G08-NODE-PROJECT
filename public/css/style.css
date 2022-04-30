@@ -1,18 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Arvo&family=Roboto+Slab:wght@350&display=swap');
 * {
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Arvo', serif;
 }
 
-* body {
-    margin: auto;
-    padding: auto;
+.answer,
+.input_question {
+    border: 1px solid #00bfff;
+    padding: 10px;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-
-/* home page */
+.no-border {
+    border: none;
+    outline: none;
+}
 
 header {
-    background-color: rgb(0, 187, 250);
+    background-color: #00bfff;
     position: fixed;
     top: 0;
     left: 0;
@@ -20,17 +29,228 @@ header {
     height: 80px;
     display: flex;
     align-items: center;
-    box-shadow: 0 0 10px 0 black;
-    color: white;
+    box-shadow: 0 0 7px 0 black;
 }
 
 nav {
     width: 100%;
+    padding: 20px;
     display: flex;
-    justify-content: center;
-    align-items: center
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+nav a {
+    background: none;
+    border: none;
 }
 
 .logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home_page {
+    width: 90%;
+    margin: auto;
+    height: 50vh;
+    font-size: 1.3rem;
+    margin-top: 200px;
+    border-radius: 10px;
+    background-image: url(../images/add_question.png);
+    background-repeat: no-repeat;
+    background-position: 20% 40%;
+    background-position: right center;
+    background-size: contain;
+}
+
+.main_container p {
+    font-size: 1.5rem;
+}
+
+.form_add_question {
+    width: 70%;
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: 0 0 10px 0 black;
     margin: 0 auto;
+}
+
+.score input {
+    border: 2px solid #00bfff;
+}
+
+.input_answer,
+.input_question {
+    margin-top: 1%;
+}
+
+.input_question {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    /* background: none; */
+}
+
+.input_answer {
+    width: 60%;
+    margin: auto;
+    padding: 15px;
+}
+
+input[type='text'] {
+    /* background: none; */
+    border: none;
+    color: #000;
+}
+
+input[type='radio'] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15.5px;
+    height: 15.5px;
+}
+
+input {
+    width: 100%;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.container2 {
+    display: none;
+    width: 40%;
+    margin: auto;
+    margin-top: 140px;
+}
+
+.main_container1 {
+    border: 2px solid #00bfff;
+    padding: 5px;
+    margin: 10px;
+    box-shadow: 0 0 4px 0 #000;
+}
+
+.question_and_button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.question_and_button .btn_edit i {
+    color: #00bfff;
+    font-size: 1.9rem;
+}
+
+.question_and_button .btn_delete i {
+    color: red;
+    font-size: 1.9rem;
+}
+
+.answer_1,
+.answer_2,
+.answer_3,
+.answer_4 {
+    color: #ffff;
+    padding: 10px;
+    margin: 7px;
+}
+
+.container2 .main_container1 .button button {
+    border: none;
+    background: none;
+}
+
+.container2 .btn_back {
+    width: 35%;
+}
+
+.modal-header {
+    font-size: 1.2rem;
+    color: #fff;
+    background: #00bfff;
+}
+
+.btn_add_play {
+    width: 100%;
+}
+
+.btn_add,
+.btn_play,
+.btn_cancel {
+    width: 25%;
+    margin: 5px;
+    padding: 7px;
+    background: #00bfff;
+    color: #fff;
+    border-radius: 7px;
+    font-size: 1.2rem;
+}
+
+.home_page .btn_add_play {
+    width: 50%;
+    display: flex;
+    font-size: 1.2rem;
+    /* margin-left: 25%; */
+}
+
+.btn_cancel {
+    width: 25%;
+    margin: 5px;
+    padding: 7px;
+    background: red;
+    color: #fff;
+    border-radius: 7px;
+    font-size: 1.2rem;
+}
+
+.btn_add a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.btn_play a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.btn_play:hover {
+    border: 1px solid #00bfff;
+    background: #fff;
+    color: #00bfff;
+}
+
+.btn_add:hover {
+    border: 1px solid #00bfff;
+    color: #00bfff;
+    background: #fff;
+}
+
+.btn_cancel:hover {
+    border: 1px solid #00bfff;
+    color: red;
+    background: #fff;
+}
+
+.btn_add,
+.btn_play,
+.btn_cancel {
+    border: none;
+}
+
+.sign-up {
+    padding: 40px;
+}
+
+::placeholder {
+    display: flex;
+    justify-content: center;
+    color: #000/* Firefox */
 }
