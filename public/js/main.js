@@ -22,6 +22,7 @@ let answers1 = document.getElementsByName("input");
 let answers2 = document.getElementsByClassName("input");
 let score = document.querySelector("#score");
 const btn_register = document.querySelector("#register");
+const btn_login = document.querySelector("#login");
 let all_answers = [];
 // function hide element
 function hide(element) {
@@ -267,6 +268,43 @@ function register(e){
 if (btn_register){
     btn_register.addEventListener("click",register);
 }
+
+// login ==============================================================
+function login(e){
+    e.preventDefault();
+    let email = document.querySelector("#email");
+    let password = document.querySelector("#password");
+
+    let email_value = email.value;
+    let password_value = password.value;
+
+    if (email_value != "" && password_value != ""){
+        // btn_login.removeAttribute('disabled');
+        axios.post(url + "/users/login")
+        .then((result)=>{
+            // console.log("Login successful");
+            let users = result.data
+            console.log(users);
+            for (let i = 0; i < users.length; i++){
+                console.log(users[i].email);
+                if ((users[i].email == email_value) && (users[i].password == password_value)){
+                    console.log("Successful!")
+                    window.location.href='/public/index.html'
+                }else {
+                    console.log("Unsuccessful")
+                }
+        }
+    })
+    .catch((error)=>{
+        console.log(error)
+    })
+    }
+}
+if (btn_login){
+    btn_login.addEventListener("click",login);
+}
+
+
 let input_question = document.querySelector("#input_question")
 let btn_add_questions = document.querySelector("#add_questions");
 btn_add_questions.addEventListener("click", is_submitted);
