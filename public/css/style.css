@@ -3,6 +3,86 @@
     font-family: 'Arvo', serif;
 }
 
+::-webkit-input-placeholder {
+    
+    color: rgba(192, 188, 196, 0.726);
+    opacity: 0.3;
+}
+.answer {
+    border: 2px solid #fff;
+    padding: 10px;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.no-border {
+    border: none;
+    outline: none;
+}
+.container {
+    background-color: rgb(70, 200, 243);
+    margin: auto;
+    margin-top: 140px;
+    border-radius: 10px;
+    padding: 10px;
+    height: 20hx;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+}
+
+#title{
+    border: none;
+    outline: none;
+    border-bottom: 3px solid rgb(187, 184, 184);
+    margin-bottom: 5px;
+    width: 100%;
+}
+.question-score{
+    display: flex;
+    border: 1px solid darkblue;
+    padding: 10px;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+    width: 100%;
+}
+span {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    font-weight: bold;
+}
+
+#input-question {
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
+.input-question {
+    width: 100%;
+}
+
+.btns {
+    display: flex;
+    justify-content: flex-end;
+    
+}
+.margin-right {
+    margin-right:5px;
+}
+
+.sign-up {
+    padding: 40px;
+}
+
+
+
+input {
+    background: none;
+    border: none;
+    outline: none;
+}
+
+
 .answer,
 .input_question {
     border: 1px solid #00bfff;
@@ -19,6 +99,18 @@
     border: none;
     outline: none;
 }
+.image {
+    margin-top: 50px;
+}
+.image img {
+    width: 600px;
+    height: 500px
+}
+.both_img_login {
+    display: flex;
+
+}
+
 
 header {
     background-color: #00bfff;
