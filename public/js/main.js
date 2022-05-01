@@ -25,6 +25,7 @@ let score_display = document.getElementById("score_p");
 let dom_score = document.querySelector("#score_display");
 dom_score.appendChild(score_display);
 let scores = document.querySelector("#score_input");
+// const btn_register = document.querySelector("#register");
 let all_answers = [];
 let current_question_index = 0;
 let score = 0;
@@ -162,7 +163,7 @@ function display_question(e) {
     })
     show(container2);
     // show(btn_nav_play)
-    // hide(play_view)
+    hide(btn_nav_view)
 }
 // function view list the questions 
 function view_list_of_questions() {
@@ -307,7 +308,6 @@ function play_quiz() {
     show(add_container)
     hide(container2)
 }
-
 //render question
 function render_question() {
     // get_data_to_play_quiz();
@@ -387,6 +387,42 @@ function view_score() {
     })
 }
 
+
+// register === === === === === === === === === === === === === === ==
+// function register(e){
+//     e.preventDefault();
+//     let email = document.querySelector("#user_email");
+//     let password = document.querySelector("#user_password");
+//     let username = document.querySelector("#user_name");
+
+//     let email_value = email.value;
+//     let password_value = password.value;
+//     let username_value = username.value;
+
+//     console.log(email_value);
+//     console.log(password_value);
+//     console.log(username_value);
+//     if (email_value != "" && password_value != "" && username_value != ""){
+//         let user_register = {
+//             "username": username_value,
+//             "email": email_value,
+//             "password": password_value
+//         };
+//         axios.post(url + "/users/create_user", user_register)
+//         .then((result)=>{
+//         console.log("add successfully");
+//         })
+//         .catch((error)=>{
+//             console.log(error)
+//         })
+//         window.location.href='login.html'
+//     }
+// }
+
+// if (btn_register){
+//     btn_register.addEventListener("click",register);
+// }
+// let input_question = document.querySelector("#input_question");
 
 let btn_add_questions = document.querySelector("#add_questions");
 btn_add_questions.addEventListener("click", is_submitted);

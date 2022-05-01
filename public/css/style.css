@@ -26,6 +26,19 @@
     outline: none;
 }
 
+.image {
+    margin-top: 50px;
+}
+
+.image img {
+    width: 600px;
+    height: 500px
+}
+
+.both_img_login {
+    display: flex;
+}
+
 header {
     background-color: #00bfff;
     position: fixed;
