@@ -31,12 +31,27 @@
             <div class="logo">
                 <p>QUIZ_APP_G08</p>
             </div>
+            <div class="btn_view_play">
+                <button class="btn_nav_play" style="display: none">
+                PLAY
+                </button>
+                <button class="btn_nav_view">
+                    VIEW
+                </button>
+                <!-- <button class="btn_nav_back" style="display: none">
+                    BACK
+                </button> -->
+                <button class="btn_add" id="add_question" data-toggle="modal" data-target="#myModal" style="display:none">
+                CREATE
+                </button>
+            </div>
         </nav>
     </header>
     <!-- display_list_of_question -->
     <div class="container2">
 
     </div>
+
     <!-- home page -->
     <div class="home_page">
         <div class="heading-3">
@@ -109,7 +124,7 @@
                                     <div class="form-group">
                                         <div class="score">
                                             <!-- <label for="score">Score</label> -->
-                                            <input type="number" id="score" name="score" min="5" max="50" placeholder="Score" value="">
+                                            <input type="number" id="score_input" name="score" min="5" max="50" placeholder="Score" value="">
 
                                         </div>
                                     </div>
@@ -132,10 +147,27 @@
     </div>
     <!-- play quiz -->
     <div class="container3">
+        <div id="play_view">
+            <div id="start">Start Quiz!</div>
+            <div id="quiz" style="display: none">
+                <div id="question">MY QUESTION</div>
+
+                <progress id="progress" value="0" max="0"></progress>
+            </div>
+
+            <div id="score_display" style="display: none">
+                <img id="score_img"></img>
+                <p id="score_p"></p>
+            </div>
+        </div>
+    </div>
+    <!-- view list of questions -->
+    <div class="view_list_question">
 
     </div>
 </body>
 <!-- link to js -->
-<script src="js/main.js" type="module"></script>
+<script src="js/main.js" type="module" defer></script>
+
 
 </html>

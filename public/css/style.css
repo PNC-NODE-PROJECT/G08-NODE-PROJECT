@@ -3,6 +3,12 @@
     font-family: 'Arvo', serif;
 }
 
+:root {
+    /* --main-color: #750579; */
+    --main-color-light: rgb(167, 167, 167);
+    --grey-color: #b6b6b6;
+}
+
 .answer,
 .input_question {
     border: 1px solid #00bfff;
@@ -58,7 +64,7 @@ nav a {
     margin: auto;
     height: 50vh;
     font-size: 1.3rem;
-    margin-top: 200px;
+    margin-top: 170px;
     border-radius: 10px;
     background-image: url(../images/add_question.png);
     background-repeat: no-repeat;
@@ -154,6 +160,15 @@ input {
     font-size: 1.9rem;
 }
 
+.question_and_button .button {
+    display: flex;
+}
+
+.question_and_button .button p {
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
 .answer_1,
 .answer_2,
 .answer_3,
@@ -245,12 +260,104 @@ input {
     border: none;
 }
 
-.sign-up {
-    padding: 40px;
+nav .btn_view_play button {
+    border: none;
+    background: none;
+    color: #fff;
 }
 
 ::placeholder {
     display: flex;
     justify-content: center;
     color: #000/* Firefox */
+}
+
+
+/* play view */
+
+.container3 {
+    display: none;
+}
+
+#play_view {
+    background-color: var(--main-color-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#start {
+    background-color: #00bfff;
+    border-radius: 20px;
+    padding: 20px;
+    font-size: 300%;
+    cursor: pointer;
+    color: #fff;
+}
+
+#start:hover {
+    background: #fff;
+    border: 2px solid #00bfff;
+    color: #000;
+}
+
+#quiz {
+    width: 50%;
+    max-width: 80%;
+    background-color: white;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+#score {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#question {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#quiz button {
+    background: none;
+}
+
+#choices {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+    margin: 20px 0;
+    justify-content: center;
+    align-items: center;
+}
+
+#score_display {
+    width: 30%;
+    margin: auto;
+    border-radius: 7px;
+    background: #fff;
+    box-shadow: 0 0 4px 0 #000;
+}
+
+#score_p {
+    text-align: center;
+}
+
+#score_img,
+#score_p {
+    padding: 10px;
+}
+
+#progress {
+    width: 100%;
+}
+
+.view_list_question {
+    width: 40%;
+    margin: auto;
+    margin-top: 140px;
 }
