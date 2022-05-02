@@ -38,12 +38,6 @@
                 <button class="btn_nav_view">
                     VIEW
                 </button>
-                <!-- <button class="btn_nav_back" style="display: none">
-                    BACK
-                </button> -->
-                <button class="btn_add" id="add_question" data-toggle="modal" data-target="#myModal" style="display:none">
-                CREATE
-                </button>
             </div>
         </nav>
     </header>
@@ -131,12 +125,12 @@
                                     <div class="btn_add_play">
                                         <button class="btn_cancel" id="btn_cancel">
                                                 CANCEL
-                                            </button>
+                                        </button>
                                         <button class="btn_add" id="add_questions" data-dismiss="modal" data-target="#myModal">
                                                 ADD
                                             </button>
                                     </div>
-                                    <!-- <button type="submit" class="btn btn-primary" data-dismiss="modal" data-target="#myModal" id="addTask">Submit</button> -->
+
                                 </form>
                             </div>
                         </div>
@@ -155,18 +149,31 @@
             </div>
 
             <div id="score_display" style="display: none">
-                <!-- <div class="btn_view_answer">
-                    <button>VIEW ANSWER</button>
-                </div> -->
                 <p id="score_p"></p>
+                <button class="show_good_answers">
+                    VIEW ANSWER
+                </button>
             </div>
         </div>
     </div>
     <!-- view list of questions -->
     <div class="view_list_question">
+        <button class="btn_nav_play" style="display: none">
+                PLAY
+        </button>
     </div>
     <!-- <!show good and bad answer -->
-    <!-- <div class="container_4"></div> -->
+    <div class="container_4">
+        <div class="main_container_4">
+
+            <div class="incorrect_answer">
+                <h4> Incorrect</h4>
+            </div>
+            <div class="correct_answer">
+                <h4> Correct</h4>
+            </div>
+        </div>
+    </div>
 </body>
 <!-- link to js -->
 <script src="../js/main.js" type="module" defer></script>

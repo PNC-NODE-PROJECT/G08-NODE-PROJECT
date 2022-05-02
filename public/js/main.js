@@ -15,7 +15,7 @@ const all_input_radio = document.getElementsByName("input");
 const score_of_question = document.querySelector("#score_input");
 const start_quiz = document.getElementById("start")
 const dom_quiz = document.getElementById("quiz");
-const play_view = document.getElementById("play_view")
+
 const btn_register = document.querySelector("#register");
 const btn_login = document.querySelector("#login");
 const dom_question = document.getElementById("question")
@@ -26,23 +26,24 @@ let answers1 = document.getElementsByName("input");
 let answers2 = document.getElementsByClassName("input");
 let score_display = document.getElementById("score_p");
 let dom_score = document.querySelector("#score_display");
-// dom_score.appendChild(score_display);
 let scores = document.querySelector("#score_input");
-// let score = document.querySelector("#score");
 let all_answers = [];
 let current_question_index = 0;
 let score = 0;
 let btn_nav_play = document.querySelector(".btn_nav_play");
 let view_list_question = document.querySelector(".view_list_question");
-let show_good_bad_answers = document.querySelector(".btn_view_answer");
-
+let show_good_bad_answers = document.querySelector(".show_good_answers");
+let show_correct_answers = document.querySelector(".correct_answer")
+let show_incorrect_answers = document.querySelector(".incorrect_answer");
+let container_4 = document.querySelector(".container_4");
+let main_container_4 = document.querySelector(".main_container_4");
+let temp_correct_answers = [];
 // function to add question
+hide(container_4)
+
 function add_question(e) {
     e.preventDefault(e);
-    // var question = document.querySelector("#input_question");
-    // var answers = document.querySelectorAll(".input");
     let score_input = scores.value
-        // let score = document.querySelector("#score");
     let question_text = question.value;
     let body = { question: question_text, answers: all_answers, score: score_input };
     answers.forEach(answer => {
@@ -164,81 +165,79 @@ function display_question(e) {
             // TODO: request tasks from server and update DOM
         refresh_question(result.data);
     })
+    show(btn_nav_play);
     show(container2);
-    // show(btn_nav_play)
     hide(btn_nav_view)
 }
 // function view list the questions 
 function view_list_of_questions() {
     axios.get(url + "/questions/").then((all_data) => {
-            console.log(all_data.data)
-                // while (view_list_of_questions.firstChild) {
-                //     view_list_of_questions.removeChild(view_list_of_questions.firstChild);
-                // }
-            for (let i = 0; i < all_data.data.length; i++) {
-                let main_container = document.createElement('div');
-                main_container.className = 'main_container1';
-                let question_and_button = document.createElement('div');
-                question_and_button.className = 'question_and_button';
-                let question = document.createElement('div');
-                question.className = 'question';
-                question.textContent = all_data.data[i].question;
-                let score_show = document.createElement('p');
-                score_show.textContent = all_data.data[i].score + "pts";
-                let answer = document.createElement('div');
-                answer.className = 'answer_to_display';
-                let answer_1 = document.createElement('div');
-                answer_1.className = 'answer_1';
-                answer_1.textContent = all_data.data[i].answers[0].answer;
-                if (all_data.data[i].answers[0].correct_answer == true) {
-                    answer_1.style.background = "blue";
-                } else {
-                    answer_1.style.background = "red";
-                }
-                let answer_2 = document.createElement('div');
-                answer_2.className = 'answer_2';
-                answer_2.textContent = all_data.data[i].answers[1].answer;
-                if (all_data.data[i].answers[1].correct_answer == true) {
-                    answer_2.style.background = "blue";
-                } else {
-                    answer_2.style.background = "red";
-                }
-                let answer_3 = document.createElement('div');
-                answer_3.className = 'answer_3';
-                answer_3.textContent = all_data.data[i].answers[2].answer;
-                if (all_data.data[i].answers[2].correct_answer == true) {
-                    answer_3.style.background = "blue";
-                } else {
-                    answer_3.style.background = "red";
-                }
-                let answer_4 = document.createElement('div');
-                answer_4.className = 'answer_4';
-                answer_4.textContent = all_data.data[i].answers[3].answer;
-                if (all_data.data[i].answers[3].correct_answer == true) {
-                    answer_4.style.background = "blue";
-                } else {
-                    answer_4.style.background = "red";
-                }
-                answer.append(answer_1);
-                answer.append(answer_2);
-                answer.append(answer_3);
-                answer.append(answer_4);
-                let div_button = document.createElement('div');
-                div_button.className = 'button';
-
-                div_button.appendChild(score_show)
-                question_and_button.appendChild(question);
-                question_and_button.appendChild(div_button);
-                main_container.appendChild(question_and_button);
-                main_container.appendChild(answer);
-                view_list_question.append(main_container);
+        console.log(all_data.data)
+        for (let i = 0; i < all_data.data.length; i++) {
+            let main_container = document.createElement('div');
+            main_container.className = 'main_container1';
+            let question_and_button = document.createElement('div');
+            question_and_button.className = 'question_and_button';
+            let question = document.createElement('div');
+            question.className = 'question';
+            question.textContent = all_data.data[i].question;
+            let score_show = document.createElement('p');
+            score_show.textContent = all_data.data[i].score + "pts";
+            let answer = document.createElement('div');
+            answer.className = 'answer_to_display';
+            let answer_1 = document.createElement('div');
+            answer_1.className = 'answer_1';
+            answer_1.textContent = all_data.data[i].answers[0].answer;
+            if (all_data.data[i].answers[0].correct_answer == true) {
+                answer_1.style.background = "blue";
+            } else {
+                answer_1.style.background = "red";
             }
-        })
-        // show(btn_nav_create)
+            let answer_2 = document.createElement('div');
+            answer_2.className = 'answer_2';
+            answer_2.textContent = all_data.data[i].answers[1].answer;
+            if (all_data.data[i].answers[1].correct_answer == true) {
+                answer_2.style.background = "blue";
+            } else {
+                answer_2.style.background = "red";
+            }
+            let answer_3 = document.createElement('div');
+            answer_3.className = 'answer_3';
+            answer_3.textContent = all_data.data[i].answers[2].answer;
+            if (all_data.data[i].answers[2].correct_answer == true) {
+                answer_3.style.background = "blue";
+            } else {
+                answer_3.style.background = "red";
+            }
+            let answer_4 = document.createElement('div');
+            answer_4.className = 'answer_4';
+            answer_4.textContent = all_data.data[i].answers[3].answer;
+            if (all_data.data[i].answers[3].correct_answer == true) {
+                answer_4.style.background = "blue";
+            } else {
+                answer_4.style.background = "red";
+            }
+            answer.append(answer_1);
+            answer.append(answer_2);
+            answer.append(answer_3);
+            answer.append(answer_4);
+            let div_button = document.createElement('div');
+            div_button.className = 'button';
+
+            div_button.appendChild(score_show)
+            question_and_button.appendChild(question);
+            question_and_button.appendChild(div_button);
+            main_container.appendChild(question_and_button);
+            main_container.appendChild(answer);
+            view_list_question.append(main_container);
+        }
+    })
+
     hide(main_container);
     hide(container_3)
     hide(btn_nav_view)
-        // view_list_question.parentElement.appendChild(view_list_question)
+    show(btn_nav_play)
+
 };
 // function to edit question
 function click_on_edit_question(e) {
@@ -304,18 +303,19 @@ function click_delete(e) {
 }
 // function play quiz
 function play_quiz() {
-    show(container_3)
-    hide(main_container)
-        // view_list_question.style.display = 'none';
-    hide(btn_nav_view)
-    show(add_container)
-    hide(container2)
+    show(container_3);
+    hide(main_container);
+    hide(btn_nav_view);
+    show(add_container);
+    hide(container2);
+    hide(btn_nav_play);
+    hide(view_list_question);
 };
 //render question
 function render_question() {
-    // get_data_to_play_quiz();
+
     axios.get(url + "/questions/").then((result) => {
-        // move();
+
         let data_1 = result.data[current_question_index];
         while (dom_quiz.firstChild) {
             dom_quiz.removeChild(dom_quiz.lastChild)
@@ -356,7 +356,7 @@ if (start_quiz) {
         // 2- Reset the question index to 0
         current_question_index = 0;
 
-        // 2 - Render the first question
+        // 3 - Render the first question
         render_question();
     });
 }
@@ -368,12 +368,26 @@ function return_the_value(e) {
 function check_all_answer(answer) {
     axios.get(url + "/questions/").then((result) => {
         let data = result.data[current_question_index].answers;
+        let data_questions = result.data[current_question_index].question;
+        let obj_temp_correct_answer = {};
+
         for (let k = 0; k < data.length; k++) {
             if (data[k].correct_answer == true) {
                 if (data[k].answer == answer) {
+                    console.log(result.data[current_question_index].question)
+                    obj_temp_correct_answer['correct_answer'] = (data[k].answer);
+                    obj_temp_correct_answer['question'] = (data_questions);
                     score += result.data[current_question_index].score;
+                } else {
+                    console.log(result.data[current_question_index].question)
+                    obj_temp_correct_answer['incorrect_answer'] = (data[k].answer)
+                    obj_temp_correct_answer['question'] = (data_questions);
                 }
             }
+        }
+        if (obj_temp_correct_answer !== null) {
+            temp_correct_answers.push(obj_temp_correct_answer);
+            console.log("correct")
         }
         if (current_question_index < result.data.length - 1) {
             current_question_index += 1;
@@ -385,27 +399,41 @@ function check_all_answer(answer) {
 };
 // function to show good and bad answers
 function show_good_bad_answer() {
-    axios.get(url + "/questions/").then((result) => {
-        console.log(result.data)
-        let data = result.data;
-        console.log(all_answers)
-            // let correct_answers = [];
-            // let incorrect_answers = [];
-        for (let k = 0; k < data.length; k++) {
-            if (data[k].answers[k].correct_answer == true) {
-                console.log("true")
-            }
+    console.log("good");
+    hide(container_3)
+    show(container_4)
+
+    for (let all_of_answers of temp_correct_answers) {
+        if (all_of_answers.correct_answer) {
+            console.log(all_of_answers.correct_answer);
+            let dom_answer = document.createElement("p");
+            let dom_question = document.createElement("li");
+            dom_question.textContent = all_of_answers.question
+            dom_answer.textContent = "Your answer is:   " + all_of_answers.correct_answer
+            show_correct_answers.appendChild(dom_question);
+            show_correct_answers.appendChild(dom_answer);
+        } else if (all_of_answers.incorrect_answer) {
+            let dom_question = document.createElement("li");
+            dom_question.textContent = all_of_answers.question
+            let dom_answer = document.createElement("p");
+            dom_answer.textContent = "Your answer is:   " + all_of_answers.incorrect_answer;
+            show_incorrect_answers.appendChild(dom_question);
+            show_incorrect_answers.appendChild(dom_answer);
         }
-    })
+        main_container_4.appendChild(show_correct_answers);
+        main_container_4.appendChild(show_incorrect_answers);
+        container_4.appendChild(main_container_4)
+    }
 };
 // function view score
 function view_score() {
     hide(dom_quiz);
     show(dom_score);
     axios.get(url + "/questions/").then((result) => {
-            score_display.textContent = "Your scores" + " : " + score;
-        })
-        // show_good_bad_answer()
+        score_display.textContent = "Your scores" + " : " + score + "pts";
+    })
+
+
 };
 // register============================================
 function register(e) {
@@ -413,14 +441,9 @@ function register(e) {
     let email = document.querySelector("#user_email");
     let password = document.querySelector("#user_password");
     let username = document.querySelector("#user_name");
-
     let email_value = email.value;
     let password_value = password.value;
     let username_value = username.value;
-
-    console.log(email_value);
-    console.log(password_value);
-    console.log(username_value);
     if (email_value != "" && password_value != "" && username_value != "") {
         let user_register = {
             "username": username_value,
@@ -479,7 +502,7 @@ if (btn_login) {
 };
 
 
-// let input_question = document.querySelector("#input_question")
+
 let btn_add_questions = document.querySelector("#add_questions");
 if (btn_add_questions) {
     btn_add_questions.addEventListener("click", is_submitted);
@@ -498,6 +521,9 @@ if (show_good_bad_answers) {
 let btn_nav_view = document.querySelector(".btn_nav_view");
 if (btn_nav_view) {
     btn_nav_view.addEventListener("click", view_list_of_questions)
+}
+if (btn_nav_play) {
+    btn_nav_play.addEventListener("click", play_quiz)
 }
 if (container2) {
     container2.addEventListener("click", click_delete);

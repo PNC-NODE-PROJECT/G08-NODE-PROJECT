@@ -28,11 +28,13 @@
 }
 
 .container {
-    background-color: rgb(70, 200, 243);
+    width: 40%;
+    background-color: #00bfff;
     margin: auto;
     margin-top: 140px;
     border-radius: 10px;
     padding: 10px;
+    color: #fff;
     height: 20hx;
     box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
 }
@@ -107,17 +109,18 @@ input {
     outline: none;
 }
 
+.both_img_login {
+    width: 100%;
+    display: flex;
+}
+
 .image {
-    margin-top: 70px;
+    margin-top: 100px;
 }
 
 .image img {
     width: 600px;
-    height: 500px
-}
-
-.both_img_login {
-    display: flex;
+    height: 450px
 }
 
 .answer_1 {
@@ -367,7 +370,7 @@ nav .btn_view_play button {
 ::placeholder {
     display: flex;
     justify-content: center;
-    color: #000/* Firefox */
+    color: #000
 }
 
 
@@ -379,7 +382,10 @@ nav .btn_view_play button {
 }
 
 #play_view {
-    background-color: var(--main-color-light);
+    background-image: url(../images/4832858.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -403,9 +409,8 @@ nav .btn_view_play button {
 
 #quiz {
     width: 35%;
-    /* max-width: 80%; */
-    background-color: #ffffff;
-    border-radius: 20px;
+    border-radius: 7px;
+    background-color: #ffff;
     padding: 10px;
 }
 
@@ -422,7 +427,10 @@ nav .btn_view_play button {
 }
 
 #quiz button {
-    background: none;
+    padding: 10px;
+    border-radius: 7px;
+    background: #00bfff;
+    color: #ffff;
 }
 
 #choices {
@@ -435,7 +443,7 @@ nav .btn_view_play button {
 }
 
 #score_display {
-    width: 30%;
+    width: 25%;
     margin: auto;
     border-radius: 7px;
     background: #fff;
@@ -461,4 +469,49 @@ nav .btn_view_play button {
     width: 40%;
     margin: auto;
     margin-top: 140px;
+}
+
+
+/* container4 */
+
+.container_4 {
+    margin-top: 120px;
+}
+
+.main_container_4 {
+    width: 50%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 4px 0 #000;
+}
+
+.main_container_4 h4 {
+    width: 40%;
+}
+
+.correct_answer {
+    overflow: initial;
+    width: 50%;
+    padding: 10px;
+    height: 70vh;
+    background: #00bfff;
+    color: rgb(255, 255, 255);
+}
+
+.incorrect_answer {
+    width: 50%;
+    padding: 10px;
+    height: 70vh;
+    background: red;
+    color: #fff;
+}
+
+.show_good_answers {
+    margin: 5%;
+    margin-left: 30%;
+    padding: 10px;
+    background: #00bfff;
+    box-shadow: 0 0 4px 0 #000;
 }
