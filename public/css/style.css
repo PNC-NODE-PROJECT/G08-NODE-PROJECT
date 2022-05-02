@@ -3,10 +3,91 @@
     font-family: 'Arvo', serif;
 }
 
+::-webkit-input-placeholder {
+    color: rgba(192, 188, 196, 0.726);
+    opacity: 0.3;
+}
+
 :root {
     /* --main-color: #750579; */
     --main-color-light: rgb(167, 167, 167);
     --grey-color: #b6b6b6;
+}
+
+.answer {
+    border: 2px solid #fff;
+    padding: 10px;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.no-border {
+    border: none;
+    outline: none;
+}
+
+.container {
+    background-color: rgb(70, 200, 243);
+    margin: auto;
+    margin-top: 140px;
+    border-radius: 10px;
+    padding: 10px;
+    height: 20hx;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+}
+
+#title {
+    border: none;
+    outline: none;
+    border-bottom: 3px solid rgb(187, 184, 184);
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.question-score {
+    display: flex;
+    border: 1px solid darkblue;
+    padding: 10px;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+}
+
+#input-question {
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.input-question {
+    width: 100%;
+}
+
+.btns {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.margin-right {
+    margin-right: 5px;
+}
+
+.sign-up {
+    padding: 40px;
+}
+
+input {
+    background: none;
+    border: none;
+    outline: none;
 }
 
 .answer,
@@ -27,7 +108,7 @@
 }
 
 .image {
-    margin-top: 50px;
+    margin-top: 70px;
 }
 
 .image img {
@@ -37,6 +118,10 @@
 
 .both_img_login {
     display: flex;
+}
+
+.answer_1 {
+    background: #000;
 }
 
 header {
@@ -77,7 +162,7 @@ nav a {
     margin: auto;
     height: 50vh;
     font-size: 1.3rem;
-    margin-top: 170px;
+    margin-top: 150px;
     border-radius: 10px;
     background-image: url(../images/add_question.png);
     background-repeat: no-repeat;
@@ -290,6 +375,7 @@ nav .btn_view_play button {
 
 .container3 {
     display: none;
+    overflow: hidden;
 }
 
 #play_view {
@@ -316,9 +402,9 @@ nav .btn_view_play button {
 }
 
 #quiz {
-    width: 50%;
-    max-width: 80%;
-    background-color: white;
+    width: 35%;
+    /* max-width: 80%; */
+    background-color: #ffffff;
     border-radius: 20px;
     padding: 10px;
 }
@@ -360,9 +446,11 @@ nav .btn_view_play button {
     text-align: center;
 }
 
-#score_img,
 #score_p {
     padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #progress {

@@ -16,6 +16,9 @@ const score_of_question = document.querySelector("#score_input");
 const start_quiz = document.getElementById("start")
 const dom_quiz = document.getElementById("quiz");
 const play_view = document.getElementById("play_view")
+const btn_register = document.querySelector("#register");
+const btn_login = document.querySelector("#login");
+const dom_question = document.getElementById("question")
 let to_edit_questions = null;
 let question = document.querySelector("#input_question");
 let answers = document.querySelectorAll(".input");
@@ -23,15 +26,15 @@ let answers1 = document.getElementsByName("input");
 let answers2 = document.getElementsByClassName("input");
 let score_display = document.getElementById("score_p");
 let dom_score = document.querySelector("#score_display");
-dom_score.appendChild(score_display);
+// dom_score.appendChild(score_display);
 let scores = document.querySelector("#score_input");
-// const btn_register = document.querySelector("#register");
+// let score = document.querySelector("#score");
 let all_answers = [];
 let current_question_index = 0;
 let score = 0;
 let btn_nav_play = document.querySelector(".btn_nav_play");
 let view_list_question = document.querySelector(".view_list_question");
-const dom_question = document.getElementById("question")
+let show_good_bad_answers = document.querySelector(".btn_view_answer");
 
 // function to add question
 function add_question(e) {
@@ -60,7 +63,7 @@ function add_question(e) {
     } else {
         confirm("You cannot add the question.")
     }
-}
+};
 // function to show add question
 function refresh_question(all_data) {
     while (container2.firstChild) {
@@ -149,7 +152,7 @@ function refresh_question(all_data) {
         container2.append(main_container);
     }
     container2.parentElement.appendChild(container2)
-}
+};
 // function to display the question
 function display_question(e) {
     hide(heading_3);
@@ -236,7 +239,7 @@ function view_list_of_questions() {
     hide(container_3)
     hide(btn_nav_view)
         // view_list_question.parentElement.appendChild(view_list_question)
-}
+};
 // function to edit question
 function click_on_edit_question(e) {
     modal_title.textContent = "Edit question";
@@ -263,7 +266,7 @@ function click_on_edit_question(e) {
             }
         })
     }
-}
+};
 
 function edit_question(e) {
     let body = { question: question.value, answers: all_answers, score: scores.value };
@@ -279,7 +282,7 @@ function edit_question(e) {
     }
     axios.put(url + '/questions/update/' + to_edit_questions, body).then((result) =>
         display_question())
-}
+};
 
 function is_submitted(e) {
     if (to_edit_questions == null) {
@@ -287,7 +290,7 @@ function is_submitted(e) {
     } else {
         edit_question(e)
     }
-}
+};
 // function to delete a question
 function click_delete(e) {
     e.preventDefault();
@@ -303,11 +306,11 @@ function click_delete(e) {
 function play_quiz() {
     show(container_3)
     hide(main_container)
-    view_list_question.style.display = 'none';
+        // view_list_question.style.display = 'none';
     hide(btn_nav_view)
     show(add_container)
     hide(container2)
-}
+};
 //render question
 function render_question() {
     // get_data_to_play_quiz();
@@ -343,22 +346,24 @@ function render_question() {
             hide(dom_quiz)
         }
     })
-}
+};
 // function_click_start
-start_quiz.addEventListener("click", (event) => {
-    hide(start_quiz);
-    show(dom_quiz);
+if (start_quiz) {
+    start_quiz.addEventListener("click", (event) => {
+        hide(start_quiz);
+        show(dom_quiz);
 
-    // 2- Reset the question index to 0
-    current_question_index = 0;
+        // 2- Reset the question index to 0
+        current_question_index = 0;
 
-    // 2 - Render the first question
-    render_question();
-});
+        // 2 - Render the first question
+        render_question();
+    });
+}
 // return_the_value
 function return_the_value(e) {
     check_all_answer(e.target.textContent)
-}
+};
 // check_answer
 function check_all_answer(answer) {
     axios.get(url + "/questions/").then((result) => {
@@ -377,60 +382,127 @@ function check_all_answer(answer) {
             view_score()
         }
     })
-}
+};
+// function to show good and bad answers
+function show_good_bad_answer() {
+    axios.get(url + "/questions/").then((result) => {
+        console.log(result.data)
+        let data = result.data;
+        console.log(all_answers)
+            // let correct_answers = [];
+            // let incorrect_answers = [];
+        for (let k = 0; k < data.length; k++) {
+            if (data[k].answers[k].correct_answer == true) {
+                console.log("true")
+            }
+        }
+    })
+};
 // function view score
 function view_score() {
-    hide(dom_quiz)
-    show(dom_score)
+    hide(dom_quiz);
+    show(dom_score);
     axios.get(url + "/questions/").then((result) => {
-        score_display.textContent = "Your scores" + " : " + score;
-    })
+            score_display.textContent = "Your scores" + " : " + score;
+        })
+        // show_good_bad_answer()
+};
+// register============================================
+function register(e) {
+    e.preventDefault();
+    let email = document.querySelector("#user_email");
+    let password = document.querySelector("#user_password");
+    let username = document.querySelector("#user_name");
+
+    let email_value = email.value;
+    let password_value = password.value;
+    let username_value = username.value;
+
+    console.log(email_value);
+    console.log(password_value);
+    console.log(username_value);
+    if (email_value != "" && password_value != "" && username_value != "") {
+        let user_register = {
+            "username": username_value,
+            "email": email_value,
+            "password": password_value
+        };
+        axios.post(url + "/users/create_user", user_register)
+            .then((result) => {
+                console.log("add successfully");
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+        window.location.href = '/index.html';
+    }
+};
+
+if (btn_register) {
+    btn_register.addEventListener("click", register);
 }
 
+// login ==============================================================
+function login(e) {
+    e.preventDefault();
+    let email = document.querySelector("#email");
+    let password = document.querySelector("#password");
 
-// register === === === === === === === === === === === === === === ==
-// function register(e){
-//     e.preventDefault();
-//     let email = document.querySelector("#user_email");
-//     let password = document.querySelector("#user_password");
-//     let username = document.querySelector("#user_name");
+    let email_value = email.value;
+    let password_value = password.value;
 
-//     let email_value = email.value;
-//     let password_value = password.value;
-//     let username_value = username.value;
+    if (email_value != "" && password_value != "") {
+        // btn_login.removeAttribute('disabled');
+        axios.post(url + "/users/login")
+            .then((result) => {
+                // console.log("Login successful");
+                let users = result.data
+                console.log(users);
+                for (let i = 0; i < users.length; i++) {
+                    console.log(users[i].email);
+                    console.log(email_value);
+                    if ((users[i].email == email_value) && (users[i].password == password_value)) {
+                        console.log("Successful!")
+                        window.location.href = 'views/main.html';
+                    } else {
+                        console.log("Unsuccessful")
+                    }
+                }
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+};
+if (btn_login) {
+    btn_login.addEventListener("click", login);
+};
 
-//     console.log(email_value);
-//     console.log(password_value);
-//     console.log(username_value);
-//     if (email_value != "" && password_value != "" && username_value != ""){
-//         let user_register = {
-//             "username": username_value,
-//             "email": email_value,
-//             "password": password_value
-//         };
-//         axios.post(url + "/users/create_user", user_register)
-//         .then((result)=>{
-//         console.log("add successfully");
-//         })
-//         .catch((error)=>{
-//             console.log(error)
-//         })
-//         window.location.href='login.html'
-//     }
-// }
 
-// if (btn_register){
-//     btn_register.addEventListener("click",register);
-// }
-// let input_question = document.querySelector("#input_question");
-
+// let input_question = document.querySelector("#input_question")
 let btn_add_questions = document.querySelector("#add_questions");
-btn_add_questions.addEventListener("click", is_submitted);
+if (btn_add_questions) {
+    btn_add_questions.addEventListener("click", is_submitted);
+}
 let btn_play_quiz = document.querySelector("#play_quiz");
-btn_play_quiz.addEventListener("click", play_quiz);
+if (btn_play_quiz) {
+    btn_play_quiz.addEventListener("click", play_quiz);
+}
+if (btn_nav_play) {
+    btn_nav_play.addEventListener("click", play_quiz);
+}
+if (show_good_bad_answers) {
+    show_good_bad_answers.addEventListener("click", show_good_bad_answer)
+}
 
-btn_nav_play.addEventListener("click", play_quiz);
 let btn_nav_view = document.querySelector(".btn_nav_view");
-btn_nav_view.addEventListener("click", view_list_of_questions)
-container2.addEventListener("click", click_delete);
-container2.addEventListener("click", click_delete);
+if (btn_nav_view) {
+    btn_nav_view.addEventListener("click", view_list_of_questions)
+}
+if (container2) {
+    container2.addEventListener("click", click_delete);
+}
+
+if (container2) {
+    container2.addEventListener("click", click_delete);
+}
