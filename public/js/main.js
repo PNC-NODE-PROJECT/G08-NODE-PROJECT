@@ -1,3 +1,4 @@
+
 // import function hide, show
 import { hide, show } from "../Utils/hide_show.js";
 const url = "http://localhost:1000"
@@ -26,6 +27,7 @@ let answers1 = document.getElementsByName("input");
 let answers2 = document.getElementsByClassName("input");
 let score_display = document.getElementById("score_p");
 let dom_score = document.querySelector("#score_display");
+let btn_logout = document.querySelector(".btn_nav_logout");
 // dom_score.appendChild(score_display);
 let scores = document.querySelector("#score_input");
 // let score = document.querySelector("#score");
@@ -60,8 +62,9 @@ function add_question(e) {
             .then((result) => {
                 display_question()
             })
-    } else {
-        confirm("You cannot add the question.")
+    }
+    else {
+        alert("You must fill all fields! So please click on button create again!!")
     }
 };
 // function to show add question
@@ -83,6 +86,7 @@ function refresh_question(all_data) {
         answer.className = 'answer_to_display';
         let answer_1 = document.createElement('div');
         answer_1.className = 'answer_1';
+
         answer_1.textContent = all_data[i].answers[0].answer;
         if (all_data[i].answers[0].correct_answer == true) {
             answer_1.style.background = "blue";
@@ -407,6 +411,59 @@ function view_score() {
         })
         // show_good_bad_answer()
 };
+
+// login ==============================================================
+function login(e) {
+    e.preventDefault();
+    let email = document.querySelector("#email");
+    let password = document.querySelector("#password");
+
+    let email_value = email.value;
+    let password_value = password.value;
+
+    if (email_value != "" && password_value != "") {
+        // btn_login.removeAttribute('disabled');
+        axios.post(url + "/users/login")
+            .then((result) => {
+                // console.log("Login successful");
+                let users = result.data
+                console.log(users);
+                for (let i = 0; i < users.length; i++) {
+                    var email_db = users[i].email;
+                    var password_db = users[i].password;
+                    
+                    sessionStorage.setItem("user_id", users[i]._id);
+                    sessionStorage.setItem("user_email", users[i].email);
+                    sessionStorage.setItem("user_password", users[i].password);
+                    sessionStorage.setItem("user_username", users[i].username);
+
+                    var email_db = sessionStorage.getItem("user_email");
+                    var password_db = sessionStorage.getItem("user_password");
+                    var username_db = sessionStorage.getItem("user_username");
+
+                    console.log("Hello all" + email_db);
+                    console.log(password_db);
+                    
+
+                    console.log(email_value);
+                    if ((email_db == email_value) && (password_db == password_value)) {
+                        console.log("Successful!")
+                       
+                        window.location.href = 'views/main.html';
+                    } else {
+                        console.log("Unsuccessful")
+                    }
+                }
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+};
+if (btn_login) {
+    btn_login.addEventListener("click", login);
+};
+
 // register============================================
 function register(e) {
     e.preventDefault();
@@ -418,10 +475,15 @@ function register(e) {
     let password_value = password.value;
     let username_value = username.value;
 
+    var email_db = sessionStorage.getItem("user_email");
+    var password_db = sessionStorage.getItem("user_password");
+    var username_db = sessionStorage.getItem("user_username");
+    
     console.log(email_value);
     console.log(password_value);
     console.log(username_value);
-    if (email_value != "" && password_value != "" && username_value != "") {
+
+    if (email_value != "" && password_value != "" && username_value != "" && email_value != email_db && password_value != password_db && username_value != username_db) {
         let user_register = {
             "username": username_value,
             "email": email_value,
@@ -442,42 +504,16 @@ if (btn_register) {
     btn_register.addEventListener("click", register);
 }
 
-// login ==============================================================
-function login(e) {
+// Logout========================================================
+function logout(e){
     e.preventDefault();
-    let email = document.querySelector("#email");
-    let password = document.querySelector("#password");
+    var id_user = sessionStorage.getItem("user_id");
+    axios.delete(url + "/users/delete/" + id_user)
+}
 
-    let email_value = email.value;
-    let password_value = password.value;
-
-    if (email_value != "" && password_value != "") {
-        // btn_login.removeAttribute('disabled');
-        axios.post(url + "/users/login")
-            .then((result) => {
-                // console.log("Login successful");
-                let users = result.data
-                console.log(users);
-                for (let i = 0; i < users.length; i++) {
-                    console.log(users[i].email);
-                    console.log(email_value);
-                    if ((users[i].email == email_value) && (users[i].password == password_value)) {
-                        console.log("Successful!")
-                        window.location.href = 'views/main.html';
-                    } else {
-                        console.log("Unsuccessful")
-                    }
-                }
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-    }
-};
-if (btn_login) {
-    btn_login.addEventListener("click", login);
-};
-
+if (btn_logout){
+    btn_logout.addEventListener("click", logout);
+}
 
 // let input_question = document.querySelector("#input_question")
 let btn_add_questions = document.querySelector("#add_questions");
@@ -506,3 +542,4 @@ if (container2) {
 if (container2) {
     container2.addEventListener("click", click_delete);
 }
+

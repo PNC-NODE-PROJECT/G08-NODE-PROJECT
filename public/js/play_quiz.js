@@ -1,3 +1,6 @@
+
+
+
 const url = "http://localhost:1000";
 const dom_question = document.getElementById("question")
 const dom_choiceA = document.getElementById("A");
@@ -51,3 +54,4 @@ function checkAnswer(choice) {
     // })
     alert(choice);
 }
+

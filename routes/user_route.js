@@ -39,4 +39,16 @@ router.post("/create_user", (req, res) => {
         console.log(err)
     })
 })
+
+router.delete('/delete/:id', (req, res) => {
+    console.log({ _id: req.params.id })
+    models_user.users_models.deleteMany({ _id: req.params.id })
+        .then((result) => {
+            res.send(result);
+        })
+        .catch((err) => {
+            res.send(err)
+            console.error(err)
+        })
+})
 module.exports = router;
