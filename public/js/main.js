@@ -39,7 +39,7 @@ let container_4 = document.querySelector(".container_4");
 let main_container_4 = document.querySelector(".main_container_4");
 let temp_correct_answers = [];
 // function to add question
-hide(container_4)
+// hide(container_4)
 
 function add_question(e) {
     e.preventDefault(e);
@@ -457,7 +457,7 @@ function register(e) {
             .catch((error) => {
                 console.log(error)
             })
-        window.location.href = '/index.html';
+        window.location.href = '../index.html';
     }
 };
 

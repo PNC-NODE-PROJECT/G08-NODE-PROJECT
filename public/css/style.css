@@ -475,6 +475,7 @@ nav .btn_view_play button {
 /* container4 */
 
 .container_4 {
+    display: none;
     margin-top: 120px;
 }
 
@@ -512,6 +513,13 @@ nav .btn_view_play button {
     margin: 5%;
     margin-left: 30%;
     padding: 10px;
+    color: #ffff;
     background: #00bfff;
     box-shadow: 0 0 4px 0 #000;
+}
+
+.show_good_answers:hover {
+    background: #fff;
+    color: #000;
+    border: 2px solid #00bfff;
 }
