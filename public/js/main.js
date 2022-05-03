@@ -462,17 +462,6 @@ function login(e) {
                     var password_db = users[i].password;
                     
                     sessionStorage.setItem("user_id", users[i]._id);
-                    sessionStorage.setItem("user_email", users[i].email);
-                    sessionStorage.setItem("user_password", users[i].password);
-                    sessionStorage.setItem("user_username", users[i].username);
-
-                    var email_db = sessionStorage.getItem("user_email");
-                    var password_db = sessionStorage.getItem("user_password");
-                    var username_db = sessionStorage.getItem("user_username");
-
-                    console.log("Hello all" + email_db);
-                    console.log(password_db);
-                    
 
                     console.log(email_value);
                     if ((email_db == email_value) && (password_db == password_value)) {
@@ -503,16 +492,11 @@ function register(e) {
     let password_value = password.value;
     let username_value = username.value;
 
-
-    var email_db = sessionStorage.getItem("user_email");
-    var password_db = sessionStorage.getItem("user_password");
-    var username_db = sessionStorage.getItem("user_username");
-    
     console.log(email_value);
     console.log(password_value);
     console.log(username_value);
 
-    if (email_value != "" && password_value != "" && username_value != "" && email_value != email_db && password_value != password_db && username_value != username_db) {
+    if ((email_value != "" && password_value != "" && username_value != "")) {
         let user_register = {
             "username": username_value,
             "email": email_value,
@@ -543,8 +527,6 @@ function logout(e){
 if (btn_logout){
     btn_logout.addEventListener("click", logout);
 }
-
-
 let btn_add_questions = document.querySelector("#add_questions");
 if (btn_add_questions) {
     btn_add_questions.addEventListener("click", is_submitted);
@@ -559,7 +541,6 @@ if (btn_nav_play) {
 if (show_good_bad_answers) {
     show_good_bad_answers.addEventListener("click", show_good_bad_answer)
 }
-
 let btn_nav_view = document.querySelector(".btn_nav_view");
 if (btn_nav_view) {
     btn_nav_view.addEventListener("click", view_list_of_questions)
@@ -570,7 +551,6 @@ if (btn_nav_play) {
 if (container2) {
     container2.addEventListener("click", click_delete);
 }
-
 if (container2) {
     container2.addEventListener("click", click_delete);
 }
