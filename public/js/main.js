@@ -1,4 +1,5 @@
 // import function hide, show
+
 import { hide, show } from "../Utils/hide_show.js";
 const url = "http://localhost:1000"
 const main_container = document.querySelector(".home_page");
@@ -40,9 +41,13 @@ let show_incorrect_answers = document.querySelector(".incorrect_answer");
 let container_4 = document.querySelector(".container_4");
 let main_container_4 = document.querySelector(".main_container_4");
 let temp_correct_answers = [];
-// function to add question
 
-
+console.log(sessionStorage.user_id)
+    // if (sessionStorage.getItem("user_id") == null) {
+    //     // location.replace = 'http://localhost:1000/views/register.html'
+    //     location.href = "http://localhost:1000/views/register.html";
+    // }
+    // function to add question
 function add_question(e) {
     e.preventDefault(e);
     let score_input = scores.value
@@ -175,7 +180,7 @@ function display_question(e) {
     hide(btn_nav_view)
 }
 // function view list the questions 
-function view_list_of_questions() {
+function view_list_of_questions(e) {
     axios.get(url + "/questions/").then((all_data) => {
 
         for (let i = 0; i < all_data.data.length; i++) {
@@ -466,7 +471,7 @@ function login(e) {
 
                     var email_db = sessionStorage.getItem("user_email");
                     var password_db = sessionStorage.getItem("user_password");
-                    // var username_db = sessionStorage.getItem("user_username");
+
                     if ((email_db == email_value) && (password_db == password_value)) {
                         alert("Successful")
                         window.location.href = 'views/main.html';
@@ -495,11 +500,14 @@ function register(e) {
     let username_value = username.value;
 
 
+
     var email_db = sessionStorage.getItem("user_email");
     var password_db = sessionStorage.getItem("user_password");
-    var username_db = sessionStorage.getItem("user_username");
+    console.log(email_value);
+    console.log(password_value);
+    console.log(username_value);
 
-    if (email_value != "" && password_value != "" && username_value != "" && email_value != email_db && password_value != password_db && username_value != username_db) {
+    if ((email_value != "" && password_value != "" && username_value != "")) {
         let user_register = {
             "username": username_value,
             "email": email_value,
@@ -533,8 +541,6 @@ function logout(e) {
 if (btn_logout) {
     btn_logout.addEventListener("click", logout);
 }
-
-
 let btn_add_questions = document.querySelector("#add_questions");
 if (btn_add_questions) {
     btn_add_questions.addEventListener("click", is_submitted);
@@ -549,7 +555,6 @@ if (btn_nav_play) {
 if (show_good_bad_answers) {
     show_good_bad_answers.addEventListener("click", show_good_bad_answer)
 }
-
 let btn_nav_view = document.querySelector(".btn_nav_view");
 if (btn_nav_view) {
     btn_nav_view.addEventListener("click", view_list_of_questions)
@@ -560,7 +565,6 @@ if (btn_nav_play) {
 if (container2) {
     container2.addEventListener("click", click_delete);
 }
-
 if (container2) {
     container2.addEventListener("click", click_delete);
 }
