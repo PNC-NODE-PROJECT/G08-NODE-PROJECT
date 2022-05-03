@@ -3,7 +3,6 @@
     font-family: 'Arvo', serif;
 }
 
-
 .btn_view_play {
     display: flex;
 }
@@ -11,6 +10,7 @@
 .btn_nav_logout {
     margin-left: 10px;
 }
+
 ::-webkit-input-placeholder {
     color: rgba(192, 188, 196, 0.726);
     opacity: 0.3;

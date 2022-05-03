@@ -1,4 +1,3 @@
-
 // import function hide, show
 import { hide, show } from "../Utils/hide_show.js";
 const url = "http://localhost:1000"
@@ -28,7 +27,7 @@ let answers2 = document.getElementsByClassName("input");
 let score_display = document.getElementById("score_p");
 let dom_score = document.querySelector("#score_display");
 let btn_logout = document.querySelector(".btn_nav_logout");
-// dom_score.appendChild(score_display);
+
 let scores = document.querySelector("#score_input");
 let all_answers = [];
 let current_question_index = 0;
@@ -42,7 +41,7 @@ let container_4 = document.querySelector(".container_4");
 let main_container_4 = document.querySelector(".main_container_4");
 let temp_correct_answers = [];
 // function to add question
-// hide(container_4)
+
 
 function add_question(e) {
     e.preventDefault(e);
@@ -58,16 +57,18 @@ function add_question(e) {
         }
         all_answers.push(object_answers);
     })
-    console.log(all_answers)
-    if (question.value !== "" && all_answers.answer !== "") {
+
+
+    if (question.value !== "" && all_answers !== "") {
         axios.post(url + "/questions/create", body)
             .then((result) => {
+                console.log(result)
                 display_question()
             })
-    }
-    else {
+    } else if (question.value == "" || all_answers[i] == "") {
         alert("You must fill all fields! So please click on button create again!!")
     }
+
 };
 // function to show add question
 function refresh_question(all_data) {
@@ -166,8 +167,7 @@ function display_question(e) {
     hide(btn_add_play);
     hide(main_container)
     axios.get(url + "/questions/").then((result) => {
-        console.log(result.data)
-            // TODO: request tasks from server and update DOM
+
         refresh_question(result.data);
     })
     show(btn_nav_play);
@@ -177,7 +177,7 @@ function display_question(e) {
 // function view list the questions 
 function view_list_of_questions() {
     axios.get(url + "/questions/").then((all_data) => {
-        console.log(all_data.data)
+
         for (let i = 0; i < all_data.data.length; i++) {
             let main_container = document.createElement('div');
             main_container.className = 'main_container1';
@@ -264,7 +264,7 @@ function click_on_edit_question(e) {
                             all_input_radio[t].checked = true;
                         }
                     }
-                    console.log(score_of_question)
+
                     score_of_question.value = data_all_question.score;
                 }
             }
@@ -379,12 +379,12 @@ function check_all_answer(answer) {
         for (let k = 0; k < data.length; k++) {
             if (data[k].correct_answer == true) {
                 if (data[k].answer == answer) {
-                    console.log(result.data[current_question_index].question)
+
                     obj_temp_correct_answer['correct_answer'] = (data[k].answer);
                     obj_temp_correct_answer['question'] = (data_questions);
                     score += result.data[current_question_index].score;
                 } else {
-                    console.log(result.data[current_question_index].question)
+
                     obj_temp_correct_answer['incorrect_answer'] = (data[k].answer)
                     obj_temp_correct_answer['question'] = (data_questions);
                 }
@@ -392,7 +392,7 @@ function check_all_answer(answer) {
         }
         if (obj_temp_correct_answer !== null) {
             temp_correct_answers.push(obj_temp_correct_answer);
-            console.log("correct")
+
         }
         if (current_question_index < result.data.length - 1) {
             current_question_index += 1;
@@ -404,13 +404,13 @@ function check_all_answer(answer) {
 };
 // function to show good and bad answers
 function show_good_bad_answer() {
-    console.log("good");
+
     hide(container_3)
     show(container_4)
 
     for (let all_of_answers of temp_correct_answers) {
         if (all_of_answers.correct_answer) {
-            console.log(all_of_answers.correct_answer);
+
             let dom_answer = document.createElement("p");
             let dom_question = document.createElement("li");
             dom_question.textContent = all_of_answers.question
@@ -451,16 +451,14 @@ function login(e) {
     let password_value = password.value;
 
     if (email_value != "" && password_value != "") {
-        // btn_login.removeAttribute('disabled');
         axios.post(url + "/users/login")
             .then((result) => {
-                // console.log("Login successful");
-                let users = result.data
-                console.log(users);
+
+                let users = result.data;
                 for (let i = 0; i < users.length; i++) {
                     var email_db = users[i].email;
                     var password_db = users[i].password;
-                    
+
                     sessionStorage.setItem("user_id", users[i]._id);
                     sessionStorage.setItem("user_email", users[i].email);
                     sessionStorage.setItem("user_password", users[i].password);
@@ -468,19 +466,12 @@ function login(e) {
 
                     var email_db = sessionStorage.getItem("user_email");
                     var password_db = sessionStorage.getItem("user_password");
-                    var username_db = sessionStorage.getItem("user_username");
-
-                    console.log("Hello all" + email_db);
-                    console.log(password_db);
-                    
-
-                    console.log(email_value);
+                    // var username_db = sessionStorage.getItem("user_username");
                     if ((email_db == email_value) && (password_db == password_value)) {
-                        console.log("Successful!")
-                       
+                        alert("Successful")
                         window.location.href = 'views/main.html';
                     } else {
-                        console.log("Unsuccessful")
+                        alert("Login unsuccessful");
                     }
                 }
             })
@@ -507,10 +498,6 @@ function register(e) {
     var email_db = sessionStorage.getItem("user_email");
     var password_db = sessionStorage.getItem("user_password");
     var username_db = sessionStorage.getItem("user_username");
-    
-    console.log(email_value);
-    console.log(password_value);
-    console.log(username_value);
 
     if (email_value != "" && password_value != "" && username_value != "" && email_value != email_db && password_value != password_db && username_value != username_db) {
         let user_register = {
@@ -519,13 +506,16 @@ function register(e) {
             "password": password_value
         };
         axios.post(url + "/users/create_user", user_register)
-            .then((result) => {
-                console.log("add successfully");
-            })
+            .then((result) => {})
             .catch((error) => {
+
                 console.log(error)
             })
+        alert("Register successfully!")
+
         window.location.href = '../index.html';
+    } else {
+        alert("Please register again!")
     }
 };
 
@@ -534,13 +524,13 @@ if (btn_register) {
 }
 
 // Logout========================================================
-function logout(e){
+function logout(e) {
     e.preventDefault();
     var id_user = sessionStorage.getItem("user_id");
     axios.delete(url + "/users/delete/" + id_user)
 }
 
-if (btn_logout){
+if (btn_logout) {
     btn_logout.addEventListener("click", logout);
 }
 
@@ -574,4 +564,3 @@ if (container2) {
 if (container2) {
     container2.addEventListener("click", click_delete);
 }
-
