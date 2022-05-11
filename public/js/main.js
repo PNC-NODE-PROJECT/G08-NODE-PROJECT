@@ -1,7 +1,7 @@
 // import function hide, show
 
 import { hide, show } from "../Utils/hide_show.js";
-const url = "http://localhost:1000"
+// const url = "http://localhost:"
 const main_container = document.querySelector(".home_page");
 const add_container = document.querySelector(".container1");
 const container2 = document.querySelector(".container2");
@@ -65,7 +65,7 @@ function add_question(e) {
 
 
     if (question.value !== "" && all_answers !== "") {
-        axios.post(url + "/questions/create", body)
+        axios.post("/questions/create", body)
             .then((result) => {
                 console.log(result)
                 display_question()
@@ -171,7 +171,7 @@ function display_question(e) {
     hide(paragraph);
     hide(btn_add_play);
     hide(main_container)
-    axios.get(url + "/questions/").then((result) => {
+    axios.get("/questions/").then((result) => {
 
         refresh_question(result.data);
     })
@@ -181,7 +181,7 @@ function display_question(e) {
 }
 // function view list the questions 
 function view_list_of_questions(e) {
-    axios.get(url + "/questions/").then((all_data) => {
+    axios.get("/questions/").then((all_data) => {
 
         for (let i = 0; i < all_data.data.length; i++) {
             let main_container = document.createElement('div');
@@ -255,7 +255,7 @@ function click_on_edit_question(e) {
     modal_header.style.background = "#00bfff";
     to_edit_questions = e.target.parentElement.id;
     if (to_edit_questions !== null) {
-        axios.get(url + "/questions/").then((result) => {
+        axios.get("/questions/").then((result) => {
             let all_questions = result.data;
             for (let data_all_question of all_questions) {
                 // to check if id of  button edit equal to id of question
@@ -289,7 +289,7 @@ function edit_question(e) {
             all_answers[k].correct_answer = false;
         }
     }
-    axios.put(url + '/questions/update/' + to_edit_questions, body).then((result) =>
+    axios.put('/questions/update/' + to_edit_questions, body).then((result) =>
         display_question())
 };
 
@@ -307,7 +307,7 @@ function click_delete(e) {
     if (e.target.parentElement.className == "btn_delete") {
         let isExecuted = confirm("Are you sure to delete this task?");
         if (isExecuted) {
-            axios.delete(url + "/questions/delete/" + id).then(display_question())
+            axios.delete("/questions/delete/" + id).then(display_question())
         }
     }
 }
@@ -324,7 +324,7 @@ function play_quiz() {
 //render question
 function render_question() {
 
-    axios.get(url + "/questions/").then((result) => {
+    axios.get("/questions/").then((result) => {
 
         let data_1 = result.data[current_question_index];
         while (dom_quiz.firstChild) {
@@ -376,7 +376,7 @@ function return_the_value(e) {
 };
 // check_answer
 function check_all_answer(answer) {
-    axios.get(url + "/questions/").then((result) => {
+    axios.get("/questions/").then((result) => {
         let data = result.data[current_question_index].answers;
         let data_questions = result.data[current_question_index].question;
         let obj_temp_correct_answer = {};
@@ -439,7 +439,7 @@ function show_good_bad_answer() {
 function view_score() {
     hide(dom_quiz);
     show(dom_score);
-    axios.get(url + "/questions/").then((result) => {
+    axios.get("/questions/").then((result) => {
         score_display.textContent = "Your scores" + " : " + score + "pts";
     })
 
@@ -456,7 +456,7 @@ function login(e) {
     let password_value = password.value;
 
     if (email_value != "" && password_value != "") {
-        axios.post(url + "/users/login")
+        axios.post("/users/login")
             .then((result) => {
 
                 let users = result.data;
@@ -513,7 +513,7 @@ function register(e) {
             "email": email_value,
             "password": password_value
         };
-        axios.post(url + "/users/create_user", user_register)
+        axios.post("/users/create_user", user_register)
             .then((result) => {})
             .catch((error) => {
 
@@ -535,7 +535,7 @@ if (btn_register) {
 function logout(e) {
     e.preventDefault();
     var id_user = sessionStorage.getItem("user_id");
-    axios.delete(url + "/users/delete/" + id_user)
+    axios.delete("/users/delete/" + id_user)
 }
 
 if (btn_logout) {
