@@ -475,8 +475,6 @@ function login(e) {
                     if ((email_db == email_value) && (password_db == password_value)) {
                         alert("Successful")
                         window.location.href = 'views/main.html';
-                    } else {
-                        alert("Login unsuccessful");
                     }
                 }
             })
